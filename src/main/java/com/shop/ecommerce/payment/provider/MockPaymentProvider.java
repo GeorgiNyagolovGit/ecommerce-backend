@@ -1,5 +1,6 @@
 package com.shop.ecommerce.payment.provider;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,14 @@ import java.util.UUID;
 @Component
 @Profile("mock-payment")
 public class MockPaymentProvider implements PaymentProvider {
+
+    private final String frontendUrl;
+
+    public MockPaymentProvider(
+            @Value("${app.frontend-url}") String frontendUrl
+    ) {
+        this.frontendUrl = frontendUrl.replaceAll("/+$", "");
+    }
 
     @Override
     public String getName() {
@@ -25,7 +34,7 @@ public class MockPaymentProvider implements PaymentProvider {
 
         return new PaymentSession(
                 providerPaymentId,
-                "http://localhost:4200/payment/mock/" + paymentId
+                frontendUrl + "/payment/mock/" + paymentId
         );
     }
 }
