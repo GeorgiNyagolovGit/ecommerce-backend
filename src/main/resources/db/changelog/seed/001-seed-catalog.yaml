@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 012-seed-catalog
+      author: georgi
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Electronics
+              - column:
+                  name: slug
+                  value: electronics
+              - column:
+                  name: description
+                  value: Phones, computers and accessories
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Books
+              - column:
+                  name: slug
+                  value: books
+              - column:
+                  name: description
+                  value: Programming and technology books
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Development Laptop
+              - column:
+                  name: description
+                  value: Laptop suitable for software development
+              - column:
+                  name: price
+                  valueNumeric: 1999.99
+              - column:
+                  name: stock
+                  valueNumeric: 10
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Laptop
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'electronics')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Java Programming Book
+              - column:
+                  name: description
+                  value: Practical introduction to Java development
+              - column:
+                  name: price
+                  valueNumeric: 49.90
+              - column:
+                  name: stock
+                  valueNumeric: 25
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Java+Book
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'books')"

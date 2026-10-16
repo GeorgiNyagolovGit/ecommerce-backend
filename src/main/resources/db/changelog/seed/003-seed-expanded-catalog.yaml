@@ -1,0 +1,457 @@
+databaseChangeLog:
+  - changeSet:
+      id: 018-seed-expanded-catalog
+      author: codex
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Clothing
+              - column:
+                  name: slug
+                  value: clothing
+              - column:
+                  name: description
+                  value: Everyday clothing and seasonal fashion
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Home & Kitchen
+              - column:
+                  name: slug
+                  value: home-kitchen
+              - column:
+                  name: description
+                  value: Useful products for your home and kitchen
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Sports
+              - column:
+                  name: slug
+                  value: sports
+              - column:
+                  name: description
+                  value: Fitness and outdoor sports equipment
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Beauty
+              - column:
+                  name: slug
+                  value: beauty
+              - column:
+                  name: description
+                  value: Beauty and personal care products
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Toys
+              - column:
+                  name: slug
+                  value: toys
+              - column:
+                  name: description
+                  value: Creative and educational toys for children
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Gaming
+              - column:
+                  name: slug
+                  value: gaming
+              - column:
+                  name: description
+                  value: Gaming accessories and equipment
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Automotive
+              - column:
+                  name: slug
+                  value: automotive
+              - column:
+                  name: description
+                  value: Accessories and essentials for your car
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Garden
+              - column:
+                  name: slug
+                  value: garden
+              - column:
+                  name: description
+                  value: Tools and accessories for garden care
+              - column:
+                  name: active
+                  valueBoolean: true
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Smart 5G Phone
+              - column:
+                  name: description
+                  value: Modern smartphone with a bright display, 5G and 128 GB storage
+              - column:
+                  name: price
+                  valueNumeric: 749.99
+              - column:
+                  name: stock
+                  valueNumeric: 18
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=5G+Phone
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'electronics')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Wireless Headphones
+              - column:
+                  name: description
+                  value: Comfortable Bluetooth headphones with active noise cancellation
+              - column:
+                  name: price
+                  valueNumeric: 129.90
+              - column:
+                  name: stock
+                  valueNumeric: 32
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Headphones
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'electronics')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Clean Code Handbook
+              - column:
+                  name: description
+                  value: A practical guide to writing readable and maintainable software
+              - column:
+                  name: price
+                  valueNumeric: 39.90
+              - column:
+                  name: stock
+                  valueNumeric: 40
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Clean+Code
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'books')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Classic Cotton T-Shirt
+              - column:
+                  name: description
+                  value: Soft unisex cotton T-shirt for everyday wear
+              - column:
+                  name: price
+                  valueNumeric: 24.99
+              - column:
+                  name: stock
+                  valueNumeric: 75
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Cotton+T-Shirt
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'clothing')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Winter Jacket
+              - column:
+                  name: description
+                  value: Warm water-resistant jacket for cold winter days
+              - column:
+                  name: price
+                  valueNumeric: 119.00
+              - column:
+                  name: stock
+                  valueNumeric: 21
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Winter+Jacket
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'clothing')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Compact Coffee Maker
+              - column:
+                  name: description
+                  value: Compact coffee maker with a reusable filter and timer
+              - column:
+                  name: price
+                  valueNumeric: 69.50
+              - column:
+                  name: stock
+                  valueNumeric: 16
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Coffee+Maker
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'home-kitchen')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: LED Desk Lamp
+              - column:
+                  name: description
+                  value: Adjustable desk lamp with three brightness levels
+              - column:
+                  name: price
+                  valueNumeric: 34.90
+              - column:
+                  name: stock
+                  valueNumeric: 28
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Desk+Lamp
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'home-kitchen')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Premium Yoga Mat
+              - column:
+                  name: description
+                  value: Non-slip exercise mat suitable for yoga and home workouts
+              - column:
+                  name: price
+                  valueNumeric: 31.50
+              - column:
+                  name: stock
+                  valueNumeric: 45
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Yoga+Mat
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'sports')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Daily Skincare Set
+              - column:
+                  name: description
+                  value: Gentle cleanser, moisturizer and face serum for daily care
+              - column:
+                  name: price
+                  valueNumeric: 54.99
+              - column:
+                  name: stock
+                  valueNumeric: 24
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Skincare+Set
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'beauty')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Creative Building Blocks
+              - column:
+                  name: description
+                  value: Colorful 250-piece building set for creative play
+              - column:
+                  name: price
+                  valueNumeric: 42.00
+              - column:
+                  name: stock
+                  valueNumeric: 35
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Building+Blocks
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'toys')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: RGB Gaming Mouse
+              - column:
+                  name: description
+                  value: Precise ergonomic gaming mouse with programmable buttons
+              - column:
+                  name: price
+                  valueNumeric: 59.90
+              - column:
+                  name: stock
+                  valueNumeric: 30
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Gaming+Mouse
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'gaming')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Dual USB Car Charger
+              - column:
+                  name: description
+                  value: Fast dual-port USB charger for cars and other vehicles
+              - column:
+                  name: price
+                  valueNumeric: 19.99
+              - column:
+                  name: stock
+                  valueNumeric: 60
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Car+Charger
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'automotive')"
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: name
+                  value: Garden Tool Set
+              - column:
+                  name: description
+                  value: Durable hand tools for planting and everyday garden maintenance
+              - column:
+                  name: price
+                  valueNumeric: 47.50
+              - column:
+                  name: stock
+                  valueNumeric: 20
+              - column:
+                  name: image_url
+                  value: https://placehold.co/600x400?text=Garden+Tools
+              - column:
+                  name: active
+                  valueBoolean: true
+              - column:
+                  name: category_id
+                  valueComputed: "(SELECT id FROM categories WHERE slug = 'garden')"

@@ -1,0 +1,11 @@
+package com.shop.ecommerce.auth.repository;
+
+import com.shop.ecommerce.auth.entity.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface RoleRepository extends JpaRepository<Role, Long> {
+
+    Optional<Role> findByName(String name);
+}

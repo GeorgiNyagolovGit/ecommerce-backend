@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-seed-roles
+      author: georgi
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_USER
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_ADMIN

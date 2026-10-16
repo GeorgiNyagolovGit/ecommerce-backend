@@ -1,0 +1,180 @@
+databaseChangeLog:
+  - changeSet:
+      id: 013-seed-customer-role
+      author: georgi
+      preConditions:
+        - onFail: MARK_RAN
+        - sqlCheck:
+            expectedResult: 0
+            sql: "SELECT COUNT(*) FROM roles WHERE name = 'ROLE_CUSTOMER'"
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_CUSTOMER
+
+  - changeSet:
+      id: 014-seed-demo-users
+      author: georgi
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: Demo
+              - column:
+                  name: last_name
+                  value: Customer
+              - column:
+                  name: email
+                  value: customer@example.com
+              - column:
+                  name: password
+                  value: "$2y$10$/bMblHmzR69rW4SNFEIIlet3owK6nxvqCLnCA43YBUG6BHUGwY9jO"
+              - column:
+                  name: enabled
+                  valueBoolean: true
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: Demo
+              - column:
+                  name: last_name
+                  value: Administrator
+              - column:
+                  name: email
+                  value: admin@example.com
+              - column:
+                  name: password
+                  value: "$2y$10$/bMblHmzR69rW4SNFEIIlet3owK6nxvqCLnCA43YBUG6BHUGwY9jO"
+              - column:
+                  name: enabled
+                  valueBoolean: true
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "(SELECT id FROM users WHERE email = 'customer@example.com')"
+              - column:
+                  name: role_id
+                  valueComputed: "(SELECT id FROM roles WHERE name = 'ROLE_CUSTOMER')"
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "(SELECT id FROM users WHERE email = 'admin@example.com')"
+              - column:
+                  name: role_id
+                  valueComputed: "(SELECT id FROM roles WHERE name = 'ROLE_ADMIN')"
+
+  - changeSet:
+      id: 015-seed-demo-cart
+      author: georgi
+      changes:
+        - insert:
+            tableName: carts
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "(SELECT id FROM users WHERE email = 'customer@example.com')"
+
+        - insert:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: cart_id
+                  valueComputed: "(SELECT c.id FROM carts c JOIN users u ON u.id = c.user_id WHERE u.email = 'customer@example.com')"
+              - column:
+                  name: product_id
+                  valueComputed: "(SELECT id FROM products WHERE name = 'Java Programming Book')"
+              - column:
+                  name: quantity
+                  valueNumeric: 2
+
+  - changeSet:
+      id: 016-seed-demo-orders
+      author: georgi
+      changes:
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "(SELECT id FROM users WHERE email = 'customer@example.com')"
+              - column:
+                  name: total_amount
+                  valueNumeric: 2049.89
+              - column:
+                  name: status
+                  value: PAID
+              - column:
+                  name: shipping_address
+                  value: 1 Demo Street, Sofia
+
+        - insert:
+            tableName: order_items
+            columns:
+              - column:
+                  name: order_id
+                  valueComputed: "(SELECT MAX(id) FROM orders WHERE user_id = (SELECT id FROM users WHERE email = 'customer@example.com'))"
+              - column:
+                  name: product_id
+                  valueComputed: "(SELECT id FROM products WHERE name = 'Development Laptop')"
+              - column:
+                  name: quantity
+                  valueNumeric: 1
+              - column:
+                  name: price
+                  valueNumeric: 1999.99
+
+        - insert:
+            tableName: order_items
+            columns:
+              - column:
+                  name: order_id
+                  valueComputed: "(SELECT MAX(id) FROM orders WHERE user_id = (SELECT id FROM users WHERE email = 'customer@example.com'))"
+              - column:
+                  name: product_id
+                  valueComputed: "(SELECT id FROM products WHERE name = 'Java Programming Book')"
+              - column:
+                  name: quantity
+                  valueNumeric: 1
+              - column:
+                  name: price
+                  valueNumeric: 49.90
+
+  - changeSet:
+      id: 017-seed-demo-payment
+      author: georgi
+      changes:
+        - insert:
+            tableName: payments
+            columns:
+              - column:
+                  name: order_id
+                  valueComputed: "(SELECT MAX(id) FROM orders WHERE user_id = (SELECT id FROM users WHERE email = 'customer@example.com'))"
+              - column:
+                  name: amount
+                  valueNumeric: 2049.89
+              - column:
+                  name: status
+                  value: COMPLETED
+              - column:
+                  name: provider
+                  value: mock
+              - column:
+                  name: provider_payment_id
+                  value: demo-payment-001
+              - column:
+                  name: checkout_url
+                  value: https://example.com/demo-payment
