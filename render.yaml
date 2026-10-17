@@ -31,9 +31,9 @@ services:
       - key: SPRING_PROFILES_ACTIVE
         value: prod,mock-payment
       - key: FRONTEND_URL
-        sync: false
+        value: https://marketplace-frontend-xi-kohl.vercel.app
       - key: CORS_ALLOWED_ORIGINS
-        sync: false
+        value: https://marketplace-frontend-xi-kohl.vercel.app
 
 databases:
   - name: ecommerce-db
