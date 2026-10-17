@@ -64,10 +64,9 @@ The complete request and response schemas are available through Swagger UI.
 ### Prerequisites
 
 - Java 17 or newer
-- PostgreSQL 13 or newer
-- A database named `javacommerce`, or your preferred name through `DB_NAME`
+- PostgreSQL 13 or newer (only when running with the `prod` profile)
 
-Docker is optional for local development. Render builds the included Dockerfile automatically.
+Local development uses an in-memory H2 database, so PostgreSQL and Docker are not required. Render uses PostgreSQL and builds the included Dockerfile automatically.
 
 ### Environment variables
 
@@ -96,21 +95,15 @@ Never commit real database passwords or JWT secrets.
 
 ### Run locally
 
-Create the database:
-
-```sql
-CREATE DATABASE javacommerce;
-```
-
-Export the required secrets and start the application:
+Start the application without additional environment variables:
 
 ```bash
-export DB_PASSWORD='your-postgres-password'
-export JWT_SECRET='your-base64-secret'
 ./gradlew bootRun
 ```
 
-Liquibase creates and seeds the database schema automatically. The local application is available at `http://localhost:8080`.
+The default `local,mock-payment` profiles use an in-memory H2 database and a development-only JWT key. Liquibase creates and seeds the schema automatically. The local application is available at `http://localhost:8080`.
+
+Production uses the `prod,mock-payment` profiles and requires the PostgreSQL and JWT environment variables listed above.
 
 ## Authentication example
 
@@ -158,8 +151,6 @@ To test protected endpoints in Swagger, select **Authorize** and enter the JWT t
 Run the complete test suite:
 
 ```bash
-export DB_PASSWORD='your-postgres-password'
-export JWT_SECRET='your-base64-secret'
 ./gradlew test
 ```
 
