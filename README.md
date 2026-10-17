@@ -80,7 +80,7 @@ Copy the values from `.env.example` into your IDE run configuration or export th
 | `DB_NAME` | No | `javacommerce` | Database name |
 | `DB_USERNAME` | No | `postgres` | Database username |
 | `DB_PASSWORD` | Yes | — | Database password |
-| `JWT_SECRET` | Yes | — | Base64-encoded JWT signing key |
+| `JWT_SECRET` | Yes | — | Base64-encoded key (at least 32 decoded bytes) or a random text secret of at least 32 bytes |
 | `JWT_EXPIRATION` | No | `86400000` | Token lifetime in milliseconds |
 | `FRONTEND_URL` | No | `http://localhost:4200` | Frontend URL used by mock checkout |
 | `CORS_ALLOWED_ORIGINS` | No | `http://localhost:4200` | Comma-separated allowed origins |
